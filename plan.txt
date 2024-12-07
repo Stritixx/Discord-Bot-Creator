@@ -1,0 +1,4 @@
+> Strona pozwala stworzyć własnego bota wybierając z listy komendy, które następnie można stylizować pod siebie
+> Stylizować można: kolor embeda, tytuł embeda, opis embeda, footer embeda, obrazek, baner i inne
+> Będzie do wyboru XX komend/funkcji, które po kliknięciu można zedytować
+> Gdy będzie już zedytowana dana komenda/funkcja to po kliknięciu przycisku "dodaj komendę" doda się ona 
