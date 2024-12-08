@@ -1,4 +1,5 @@
 <template>
+  
   <div class="hidden">
     <vs-sidebar v-model="active" absolute open background="#0a0a0a">
       <template #logo>
@@ -227,6 +228,8 @@ onMounted(() => {
 
 
 .ms__loader {
+  position: fixed;
+  z-index: 99999;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
