@@ -232,8 +232,10 @@ onMounted(() => {
 }
 
 .ms__loader-close {
-  animation: closeLoader .5s both;
+  -webkit-animation: closeLoader 1s both;
+  animation: closeLoader 1s both;
 }
+
 
 @keyframes closeLoader {
   from {
@@ -243,7 +245,6 @@ onMounted(() => {
     opacity: 0;
   }
 }
-
 
 .vs-loading__load {
     display: flex;
