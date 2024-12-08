@@ -1,7 +1,7 @@
 <template>
   
   <div class="hidden">
-    <vs-sidebar v-model="active" absolute open background="rgb(2, 2, 2)">
+    <vs-sidebar v-model="active" absolute open background="rgb(10, 10, 10)">
       <template #logo>
         <img src="./assets/logo.png" alt="Logo" class="ms__sidebar__logo">
         <h1 class="ms__company__name">BotSpace</h1>
