@@ -1,23 +1,28 @@
 <template>
-  
-  <div class="hidden">
-    <vs-sidebar v-model="active" absolute open background="rgb(2, 2, 2)">
+  <div class="ms__free__space"></div>
+    <vs-sidebar v-model="active" fixed open background="rgb(2, 2, 2)">
       <template #logo>
-        <img src="./assets/logo.png" alt="Logo" class="ms__sidebar__logo">
-        <h1 class="ms__company__name">BotSpace</h1>
+        <RouterLink to="/" style="display: flex;">
+          <img src="./assets/logo.png" alt="Logo" class="ms__sidebar__logo">
+          <h1 class="ms__company__name">BotSpace</h1>
+        </RouterLink>
       </template>
-      <vs-sidebar-item id="home">
+      <RouterLink to="/">
+        <vs-sidebar-item id="home">
         <template #icon>
           <i class="bx bx-home" />
         </template>
         Home
       </vs-sidebar-item>
-      <vs-sidebar-item id="tutorial">
-        <template #icon>
-          <i class="bx bx-grid-alt" />
-        </template>
-        Tutorial
-      </vs-sidebar-item>
+      </RouterLink>
+      <RouterLink to="/tutorial">
+        <vs-sidebar-item id="tutorial">
+          <template #icon>
+            <i class="bx bx-grid-alt" />
+          </template>
+          Tutorial
+        </vs-sidebar-item>
+      </RouterLink>
       <vs-sidebar-item id="status">
         <template #icon>
           <i class='bx bx-bar-chart-alt-2' ></i>
@@ -135,7 +140,12 @@
         </vs-sidebar-item>
       </vs-sidebar-group>
     </vs-sidebar>
-  </div>
+
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 
@@ -257,12 +267,38 @@ onMounted(() => {
     height: 100vh;
     position: fixed;
     width: 100vw;
-    background: rgba(0, 0, 0, 0.849);
+    background: rgba(0, 0, 0, 0.918);
     z-index: 9999;
     top: 0;
     transform: scale(1) !important;
 }
 
 
+.ms__free__space {
+  min-width: 260px;
+}
 
+
+.hidden {
+  width: 300px;
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease-in;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
 </style>

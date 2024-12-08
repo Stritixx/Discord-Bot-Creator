@@ -5,9 +5,12 @@ import Vuesax from 'vuesax-alpha';
 import 'vuesax-alpha/theme-chalk/index.css'
 import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 import 'boxicons/css/boxicons.min.css';
+import VSnow from "vsnow";
+
 
 const app = createApp(App);
 app.use(router);
+app.use(VSnow);
 
 app.use(Vuesax, {
     colors: {
