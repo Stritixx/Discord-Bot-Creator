@@ -11,46 +11,89 @@
         </template>
         Home
       </vs-sidebar-item>
-      <vs-sidebar-item id="market">
+      <vs-sidebar-item id="tutorial">
         <template #icon>
           <i class="bx bx-grid-alt" />
         </template>
-        Market Overview
+        Tutorial
       </vs-sidebar-item>
-      <vs-sidebar-item id="Music">
+      <vs-sidebar-item id="status">
         <template #icon>
-          <i class="bx bxs-music" />
+          <i class='bx bx-bar-chart-alt-2' ></i>
         </template>
-        Music
+        Status
+      </vs-sidebar-item>
+      <vs-sidebar-item id="discord">
+        <template #icon>
+          <i class='bx bxl-discord-alt' ></i>
+        </template>
+        Discord
+      </vs-sidebar-item>
+      <vs-sidebar-item id="news">
+        <template #icon>
+          <i class='bx bx-news' ></i>
+        </template>
+        News
       </vs-sidebar-item>
       <vs-sidebar-group>
         <template #header>
           <vs-sidebar-item arrow>
             <template #icon>
-              <i class="bx bx-group" />
+              <i class='bx bx-terminal'></i>
             </template>
-            Social media
+            Commands
           </vs-sidebar-item>
         </template>
 
-        <vs-sidebar-item id="Instagram">
+        <vs-sidebar-item id="embedCreator">
           <template #icon>
-            <i class="bx bxl-instagram" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Instagram
+          Embed Creator
         </vs-sidebar-item>
-        <vs-sidebar-item id="twitter">
+
+        <vs-sidebar-item id="mute">
           <template #icon>
-            <i class="bx bxl-twitter" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Twitter
+          Mute / Unmute
         </vs-sidebar-item>
-        <vs-sidebar-item id="Facebook">
+
+        <vs-sidebar-item id="ban">
           <template #icon>
-            <i class="bx bxl-facebook" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Facebook
+          Ban / Unban
         </vs-sidebar-item>
+
+        <vs-sidebar-item id="clear">
+          <template #icon>
+            <i class='bx bx-chevron-right'></i>
+          </template>
+          Clear
+        </vs-sidebar-item>
+        
+        <vs-sidebar-item id="warn">
+          <template #icon>
+            <i class='bx bx-chevron-right'></i>
+          </template>
+          Warn
+        </vs-sidebar-item>
+
+        <vs-sidebar-item id="kick">
+          <template #icon>
+            <i class='bx bx-chevron-right'></i>
+          </template>
+          Kick
+        </vs-sidebar-item>
+        
+        <vs-sidebar-item id="say">
+          <template #icon>
+            <i class='bx bx-chevron-right'></i>
+          </template>
+          Say
+        </vs-sidebar-item>
+        
       </vs-sidebar-group>
       <vs-sidebar-group>
         <template #header>
@@ -58,65 +101,38 @@
             <template #icon>
               <i class="bx bx-code-alt" />
             </template>
-            Coding
+            Functions
           </vs-sidebar-item>
         </template>
 
-        <vs-sidebar-item id="github">
+        <vs-sidebar-item id="activity">
           <template #icon>
-            <i class="bx bxl-github" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Github
+          Bot Activity
         </vs-sidebar-item>
-        <vs-sidebar-item id="codepen">
+
+        <vs-sidebar-item id="tickets">
           <template #icon>
-            <i class="bx bxl-codepen" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Codepen
+          Tickets
         </vs-sidebar-item>
-        <vs-sidebar-item id="discord">
+
+        <vs-sidebar-item id="lobby">
           <template #icon>
-            <i class="bx bxl-discord" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Discord
+          Lobby
         </vs-sidebar-item>
-        <vs-sidebar-item id="Javascript">
+
+        <vs-sidebar-item id="verify">
           <template #icon>
-            <i class="bx bxl-javascript" />
+            <i class='bx bx-chevron-right'></i>
           </template>
-          Javascript
-        </vs-sidebar-item>
-        <vs-sidebar-item id="git">
-          <template #icon>
-            <i class="bx bxl-git" />
-          </template>
-          Git
+          Verify
         </vs-sidebar-item>
       </vs-sidebar-group>
-      <vs-sidebar-item id="donate">
-        <template #icon>
-          <i class="bx bxs-donate-heart" />
-        </template>
-        Donate
-      </vs-sidebar-item>
-      <vs-sidebar-item id="drink">
-        <template #icon>
-          <i class="bx bx-drink" />
-        </template>
-        Drink
-      </vs-sidebar-item>
-      <vs-sidebar-item id="shopping">
-        <template #icon>
-          <i class="bx bxs-shopping-bags" />
-        </template>
-        Shopping
-      </vs-sidebar-item>
-      <vs-sidebar-item id="chat">
-        <template #icon>
-          <i class="bx bx-chat" />
-        </template>
-        Chat
-      </vs-sidebar-item>
     </vs-sidebar>
   </div>
 </template>
@@ -129,6 +145,37 @@
         active: 'home',
       })
   }
+</script>
+
+<script setup>
+import { onMounted } from 'vue';
+import { VsLoadingFn } from 'vuesax-alpha';
+
+const openLoading = () => {
+  const loadingInstance = VsLoadingFn({
+    text: 'Loading...',
+    className: 'ms__loader'
+  });
+
+  setTimeout(() => {
+    const loaderElement = document.querySelector('.ms__loader');
+    if (loaderElement) {
+      loaderElement.classList.add('ms__loader-close');
+
+      loaderElement.addEventListener(
+        'animationend',
+        () => {
+          loadingInstance.close();
+        },
+        { once: true }
+      );
+    }
+  }, 500);
+};
+
+onMounted(() => {
+  openLoading();
+});
 </script>
 
 
@@ -161,4 +208,57 @@
 .ms__sidebar__logo {
   filter: drop-shadow(0px 0px 15px #0062ff);
 }
+
+
+.vs-sidebar-item__icon {
+  background: none !important;
+}
+
+
+.vs-sidebar {
+  transition: none !important;
+}
+
+
+.vs-loading {
+  background: rgba(0, 0, 0, 0.555) !important;
+}
+
+
+
+.ms__loader {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.ms__loader-close {
+  animation: closeLoader .5s both;
+}
+
+@keyframes closeLoader {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+.vs-loading__load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.849);
+    z-index: 9999;
+    top: 0;
+    transform: scale(1) !important;
+}
+
+
+
 </style>
