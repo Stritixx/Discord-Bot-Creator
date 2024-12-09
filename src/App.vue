@@ -181,7 +181,7 @@ const openLoading = () => {
         { once: true }
       );
     }
-  }, 500);
+  }, 50000);
 };
 
 onMounted(() => {
