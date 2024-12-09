@@ -11,7 +11,7 @@
         </div>
         <div class="ms__header__button__container">
             <RouterLink to="/dashboard">
-                <vs-button type="transparent" size="large" class="ms__get__started ms__button__hover" active>
+                <vs-button type="transparent" size="large" class="ms__get__started ms__button__hover" active @click="changeState">
                   Get Started!
                 </vs-button>
             </RouterLink>
@@ -35,8 +35,12 @@
         setup() {
             const active = ref(0);
 
-            return { active };
-        }
+            function changeState() {
+                console.log('dziala');
+            }
+
+            return { active, changeState };
+        },
     }
 </script>
 
