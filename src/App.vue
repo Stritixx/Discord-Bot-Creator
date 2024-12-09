@@ -195,7 +195,7 @@
       console.log('news');
     }
 
-    else if (path === '' || '/') {
+    else {
       console.log('home')
     }
   };
