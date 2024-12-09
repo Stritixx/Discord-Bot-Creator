@@ -161,16 +161,39 @@
   <script setup>
   import { ref, onMounted, watch } from 'vue';
   import { useRoute } from 'vue-router'; 
+
   const active = ref('home');
   const isDashboard = ref(false);
   
   const route = useRoute();
+  
+  // Funkcja sprawdzająca, na jakiej stronie jesteśmy
+  const checkPage = () => {
+    const path = window.location.pathname;  // Pobranie ścieżki URL
+
+    // Sprawdzenie na jakiej podstronie jesteśmy i logowanie jej nazwy
+    if (path === '/dashboard') {
+      console.log('dashboard');
+    } else if (path === '/discord') {
+      console.log('discord');
+    } else if (path === '/tutorial') {
+      console.log('tutorial');
+    } else if (path === '/status') {
+      console.log('status');
+    } else if (path === '/news') {
+      console.log('news');
+    } else {
+      console.log('Strona główna lub inna: ' + path); // Logowanie ścieżki, jeśli nie pasuje do żadnej z wyżej wymienionych
+    }
+  };
+
   const checkDashboard = () => {
     isDashboard.value = route.path.includes('/dashboard');
   };
-  
+
   watch(() => route.path, () => {
     checkDashboard();
+    checkPage();  // Wywołanie funkcji sprawdzającej stronę
   }, { immediate: true });
   
   import { VsLoadingFn } from 'vuesax-alpha';
@@ -198,8 +221,10 @@
   
   onMounted(() => {
     openLoading();
+    checkPage();  // Wywołanie funkcji przy montowaniu komponentu
   });
-  </script>
+</script>
+
   
   
   <style>
