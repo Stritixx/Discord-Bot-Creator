@@ -160,37 +160,21 @@
   
   <script setup>
   import { ref, onMounted, watch } from 'vue';
-  import { useRoute } from 'vue-router';
-  import { VsLoadingFn } from 'vuesax-alpha';
-  
-  // Zmienna do przechowywania aktywnego elementu w sidebarze
+  import { useRoute } from 'vue-router'; 
   const active = ref('home');
   const isDashboard = ref(false);
   
-  // Mapa ścieżek URL do identyfikatorów aktywnych elementów
-  const pathToActiveMap = {
-    '/dashboard': 'dashboard',
-    '/tutorial': 'tutorial',
-    '/': 'home', // Strona główna
-    '/status': 'status',
-    '/discord': 'discord',
-    '/news': 'news'
-  };
-  
-  // Funkcja, która aktualizuje zmienną "active" w zależności od bieżącej ścieżki URL
   const route = useRoute();
   const checkDashboard = () => {
     isDashboard.value = route.path.includes('/dashboard');
   };
   
-  const getItemId = (path) => {
-    return pathToActiveMap[path] || 'home'; // Jeśli ścieżka nie istnieje w mapie, domyślnie 'home'
-  };
+  watch(() => route.path, () => {
+    checkDashboard();
+  }, { immediate: true });
   
-  // Obserwowanie zmiany ścieżki URL
-  watch(() => route.path, checkDashboard, { immediate: true });
+  import { VsLoadingFn } from 'vuesax-alpha';
   
-  // Funkcja do wyświetlania loadera
   const openLoading = () => {
     const loadingInstance = VsLoadingFn({
       text: 'Loading...',
@@ -212,7 +196,6 @@
     }, 500);
   };
   
-  // Uruchamiamy loadera przy montowaniu komponentu
   onMounted(() => {
     openLoading();
   });
