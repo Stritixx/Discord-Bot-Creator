@@ -151,23 +151,19 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router'; // użyj hooka do monitorowania zmiany ścieżki
-
+import { useRoute } from 'vue-router'; 
 const active = ref('home');
 const isDashboard = ref(false);
 
-// Funkcja do ustawiania wartości isDashboard
 const route = useRoute();
 const checkDashboard = () => {
   isDashboard.value = route.path.includes('/dashboard');
 };
 
-// Obserwacja zmiany ścieżki
 watch(() => route.path, () => {
   checkDashboard();
 }, { immediate: true });
 
-// Otwórz loader przy montowaniu
 import { VsLoadingFn } from 'vuesax-alpha';
 
 const openLoading = () => {
