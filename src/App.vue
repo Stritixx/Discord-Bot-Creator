@@ -151,16 +151,17 @@
 
 <script>
   export default {
-    name: 'App',
-    data () {
-      const isDashboard = window.location.pathname.includes('/dashboard');
-      
-      return {
-        active: 'home',
-        isDashboard
-      }
+  name: 'App',
+  data() {
+    return {
+      active: 'home',
+      isDashboard: false
     }
+  },
+  mounted() {
+    this.isDashboard = window.location.pathname.includes('/dashboard');
   }
+}
 </script>
 
 <script setup>
