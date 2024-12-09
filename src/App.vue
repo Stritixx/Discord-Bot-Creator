@@ -181,7 +181,7 @@ const openLoading = () => {
         { once: true }
       );
     }
-  }, 50000);
+  }, 500);
 };
 
 onMounted(() => {
@@ -306,4 +306,11 @@ a {
 .ms__router__link__styles {
   width: 100%;
 }
+
+
+.vs-loading__load {
+  scale: 1.4;
+}
+
+  
 </style>
