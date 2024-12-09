@@ -152,16 +152,16 @@
 <script>
   export default {
     name: 'App',
-    data:() => ({
-        active: 'home',
-      })
+    data () {
+      return active: 'home'
+    }
   }
 </script>
 
 <script setup>
 import { onMounted } from 'vue';
 import { VsLoadingFn } from 'vuesax-alpha';
-  
+
 
 const openLoading = () => {
   const loadingInstance = VsLoadingFn({
