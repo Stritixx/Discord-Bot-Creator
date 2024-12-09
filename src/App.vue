@@ -41,7 +41,7 @@
         </template>
         News
       </vs-sidebar-item>
-      <vs-sidebar-group v-if="isDashboard">
+      <vs-sidebar-group>
         <template #header>
           <vs-sidebar-item arrow>
             <template #icon>
@@ -100,7 +100,7 @@
           Say
         </vs-sidebar-item>
         
-      </vs-sidebar-group v-if="isDashboard">
+      </vs-sidebar-group>
       <vs-sidebar-group>
         <template #header>
           <vs-sidebar-item arrow>
