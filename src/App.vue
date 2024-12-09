@@ -150,18 +150,32 @@
 
 
 <script>
-  export default {
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+
+export default {
   name: 'App',
   data() {
     return {
       active: 'home',
-      isDashboard: false
-    }
+    };
   },
-  mounted() {
-    this.isDashboard = window.location.pathname.includes('/dashboard');
-  }
-}
+  setup() {
+    const route = useRoute(); // Uzyskujemy dostęp do bieżącej trasy
+    const isDashboard = ref(false); // Zmienna reaktywna do sprawdzania, czy jesteśmy na dashboardzie
+
+    // Obserwuj zmiany trasy i dynamicznie aktualizuj isDashboard
+    watch(
+      () => route.path, // Obserwuj bieżącą trasę
+      (newPath) => {
+        isDashboard.value = newPath.includes('/dashboard');
+      },
+      { immediate: true } // Wykonaj natychmiast przy załadowaniu komponentu
+    );
+
+    return { isDashboard }; // Zwracamy isDashboard do wykorzystania w szablonie
+  },
+};
 </script>
 
 <script setup>
