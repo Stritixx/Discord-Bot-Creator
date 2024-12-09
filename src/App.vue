@@ -158,6 +158,11 @@
   </template>
   
   
+
+
+
+
+
   <script setup>
   import { ref, onMounted, watch } from 'vue';
   import { useRoute } from 'vue-router'; 
@@ -167,34 +172,53 @@
   
   const route = useRoute();
   
-  // Funkcja sprawdzająca, na jakiej stronie jesteśmy
   const checkPage = () => {
-    const path = window.location.pathname;  // Pobranie ścieżki URL
+    const path = window.location.pathname;
 
-    // Sprawdzenie na jakiej podstronie jesteśmy i logowanie jej nazwy
     if (path === '/dashboard') {
       console.log('dashboard');
-    } else if (path === '/discord') {
+    } 
+    
+    else if (path === '/discord') {
       console.log('discord');
-    } else if (path === '/tutorial') {
+    } 
+    
+    else if (path === '/tutorial') {
       console.log('tutorial');
-    } else if (path === '/status') {
+    } 
+    
+    else if (path === '/status') {
       console.log('status');
-    } else if (path === '/news') {
+    } 
+    
+    else if (path === '/news') {
       console.log('news');
-    } else {
-      console.log('Strona główna lub inna: ' + path); // Logowanie ścieżki, jeśli nie pasuje do żadnej z wyżej wymienionych
-    }
+    } 
+    
+    console.log(path)
   };
 
-  const checkDashboard = () => {
+
+
+
+  function checkDashboard() {
     isDashboard.value = route.path.includes('/dashboard');
-  };
+  }
 
-  watch(() => route.path, () => {
+
+
+
+  watch(function() {
+    return route.path;
+  }, 
+  function() {
     checkDashboard();
-    checkPage();  // Wywołanie funkcji sprawdzającej stronę
-  }, { immediate: true });
+    checkPage();
+  }, 
+  { 
+    immediate: true 
+  });
+
   
   import { VsLoadingFn } from 'vuesax-alpha';
   
