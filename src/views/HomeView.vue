@@ -136,6 +136,7 @@
 
 .ms__header__button__container {
     width: 100%;
+    height: auto + 15px;
     display: flex;
     justify-content: center;
     margin-top: 30px;
@@ -165,9 +166,8 @@
 
 
 .ms__button__hover:hover {
-    margin-bottom: 5px !important;
+    margin-top: 5px !important;
     box-shadow: 0px 16px 16px -19px rgba(0, 79, 255, 1) !important;
-    background: red !important;
 }
 
 
