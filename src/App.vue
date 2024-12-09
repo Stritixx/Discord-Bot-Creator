@@ -194,8 +194,6 @@
     else if (path === '/news') {
       console.log('news');
     } 
-    
-    console.log(path)
   };
 
 
