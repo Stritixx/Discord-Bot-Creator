@@ -169,7 +169,6 @@
     isDashboard.value = route.path.includes('/dashboard');
   };
   
-  console.log(active)
   watch(() => route.path, () => {
     checkDashboard();
   }, { immediate: true });
