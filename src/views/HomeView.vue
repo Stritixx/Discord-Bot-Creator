@@ -158,4 +158,13 @@
     filter: blur(4px);
     border-radius: 17px;
 }
+
+
+.vs-button__content:hover {
+    margin-bottom: 5px;
+    box-shadow: 0px 16px 16px -19px rgba(0, 79, 255, 1);
+}
+
+
+    
 </style>
