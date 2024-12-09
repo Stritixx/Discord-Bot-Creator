@@ -41,7 +41,7 @@
         </template>
         News
       </vs-sidebar-item>
-      <vs-sidebar-group>
+      <vs-sidebar-group v-if="isDashboard">
         <template #header>
           <vs-sidebar-item arrow>
             <template #icon>
@@ -100,7 +100,7 @@
           Say
         </vs-sidebar-item>
         
-      </vs-sidebar-group>
+      </vs-sidebar-group v-if="isDashboard">
       <vs-sidebar-group>
         <template #header>
           <vs-sidebar-item arrow>
@@ -153,8 +153,11 @@
   export default {
     name: 'App',
     data () {
+      const isDashboard = window.location.pathname.includes('/dashboard');
+      
       return {
         active: 'home',
+        isDashboard
       }
     }
   }
