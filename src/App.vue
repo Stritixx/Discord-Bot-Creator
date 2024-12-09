@@ -7,7 +7,7 @@
           <h1 class="ms__company__name">BotSpace</h1>
         </RouterLink>
       </template>
-      <RouterLink to="/">
+      <RouterLink to="/" class="ms__router__link__styles">
         <vs-sidebar-item id="home">
         <template #icon>
           <i class="bx bx-home" />
@@ -15,7 +15,7 @@
         Home
       </vs-sidebar-item>
       </RouterLink>
-      <RouterLink to="/tutorial">
+      <RouterLink to="/tutorial" class="ms__router__link__styles">
         <vs-sidebar-item id="tutorial">
           <template #icon>
             <i class="bx bx-grid-alt" />
@@ -300,5 +300,10 @@ button,
 select,
 a {
     -webkit-tap-highlight-color: transparent;
+}
+
+
+.ms__router__link__styles {
+  width: 100%;
 }
 </style>
