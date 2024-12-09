@@ -41,7 +41,7 @@
         </template>
         News
       </vs-sidebar-item>
-      <vs-sidebar-group>
+      <vs-sidebar-group v-if="isDashboard">
         <template #header>
           <vs-sidebar-item arrow>
             <template #icon>
@@ -101,7 +101,7 @@
         </vs-sidebar-item>
         
       </vs-sidebar-group>
-      <vs-sidebar-group>
+      <vs-sidebar-group v-if="isDashboard">
         <template #header>
           <vs-sidebar-item arrow>
             <template #icon>
@@ -150,17 +150,33 @@
 
 
 <script>
+  import { useRoute } from 'vue-router';
+  import { computed } from 'vue';
+  
   export default {
     name: 'App',
-    data:() => ({
-        active: 'home',
-      })
-  }
+    data() {
+      return {
+        active: 'home', // Zmienna aktywnego elementu na pasku bocznym
+      };
+    },
+    setup() {
+      const route = useRoute(); // Dostajemy dostęp do bieżącej trasy
+  
+      // Sprawdzamy, czy aktualna ścieżka to '/dashboard'
+      const isDashboard = computed(() => {
+        return route.path === '/dashboard';
+      });
+  
+      return { isDashboard };
+    }
+  };
 </script>
 
 <script setup>
 import { onMounted } from 'vue';
 import { VsLoadingFn } from 'vuesax-alpha';
+  
 
 const openLoading = () => {
   const loadingInstance = VsLoadingFn({
