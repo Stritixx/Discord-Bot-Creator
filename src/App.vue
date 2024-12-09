@@ -15,14 +15,14 @@
         Home
       </vs-sidebar-item>
       </RouterLink>
-      <RouterLink to="/tutorial">
         <vs-sidebar-item id="tutorial">
+          <RouterLink to="/tutorial">
           <template #icon>
             <i class="bx bx-grid-alt" />
           </template>
           Tutorial
+            </RouterLink>
         </vs-sidebar-item>
-      </RouterLink>
       <vs-sidebar-item id="status">
         <template #icon>
           <i class='bx bx-bar-chart-alt-2' ></i>
