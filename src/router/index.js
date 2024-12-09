@@ -19,6 +19,7 @@ const routes = [
     path: '/dashboard',
     name: 'DashboardView',
     component: DashboardView,
+  },
 ];
 
 const router = createRouter({
