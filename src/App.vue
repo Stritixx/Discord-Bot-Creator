@@ -153,7 +153,9 @@
   export default {
     name: 'App',
     data () {
-      return active: 'home'
+      return {
+        active: 'home',
+      }
     }
   }
 </script>
