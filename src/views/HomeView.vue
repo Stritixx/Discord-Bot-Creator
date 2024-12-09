@@ -136,7 +136,7 @@
 
 .ms__header__button__container {
     width: 100%;
-    height: auto + 15px;
+    height: calc(auto + 15px);
     display: flex;
     justify-content: center;
     margin-top: 30px;
