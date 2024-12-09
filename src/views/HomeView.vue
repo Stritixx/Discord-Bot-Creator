@@ -10,10 +10,10 @@
             <p>The easiest way to build your own Discord bot with custom commands/functions without any programming knowledge!</p>
         </div>
         <div class="ms__header__button__container">
-            <vs-button type="transparent" active size="large" class="ms__get__started ms__button__hover">
+            <vs-button type="transparent" active size="large" class="ms__get__started ms__button__hover" :active="active == 1" @click="active = 1">
               Get Started!
             </vs-button>
-            <vs-button type="transparent" active size="large" class="ms__button__hover">
+            <vs-button type="transparent" active size="large" class="ms__button__hover" :active="active == 1" @click="active = 1">
               How it works?
             </vs-button>
         </div>
@@ -25,10 +25,20 @@
 
 
 <script>
+    import { ref } from 'vue';
+
+    
     export default {
         name: 'HomeView',
+        setup() {
+            const active = ref(0);
+
+            return { active };
+        }
     }
 </script>
+
+
 
 
 
