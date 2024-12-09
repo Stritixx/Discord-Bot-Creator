@@ -10,9 +10,11 @@
             <p>The easiest way to build your own Discord bot with custom commands/functions without any programming knowledge!</p>
         </div>
         <div class="ms__header__button__container">
-            <vs-button type="transparent" size="large" class="ms__get__started ms__button__hover" active>
-              Get Started!
-            </vs-button>
+            <RouterLink to="/dashboard">
+                <vs-button type="transparent" size="large" class="ms__get__started ms__button__hover" active>
+                  Get Started!
+                </vs-button>
+            </RouterLink>
             <vs-button type="transparent" size="large" class="ms__button__hover" active>
               How it works?
             </vs-button>
