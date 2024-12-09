@@ -163,6 +163,7 @@
 .vs-button__content:hover {
     margin-bottom: 5px !important;
     box-shadow: 0px 16px 16px -19px rgba(0, 79, 255, 1) !important;
+    background: red !important;
 }
 
 
