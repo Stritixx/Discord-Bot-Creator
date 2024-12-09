@@ -1,5 +1,5 @@
 <template>
-    <h1>Tutorial</h1>
+    <h1>Tu coś kiedyś może dodam</h1>
 </template>
 
 

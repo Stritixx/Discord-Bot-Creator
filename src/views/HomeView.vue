@@ -11,7 +11,7 @@
         </div>
         <div class="ms__header__button__container">
             <RouterLink to="/dashboard">
-                <vs-button type="transparent" size="large" class="ms__get__started ms__button__hover" active @click="changeState">
+                <vs-button type="transparent" size="large" class="ms__get__started ms__button__hover" active @click="LoadDashboard">
                   Get Started!
                 </vs-button>
             </RouterLink>
@@ -28,18 +28,35 @@
 
 <script>
     import { ref } from 'vue';
-
+    import { VsLoadingFn } from 'vuesax-alpha';
     
     export default {
         name: 'HomeView',
         setup() {
             const active = ref(0);
 
-            function changeState() {
-                console.log('dziala');
-            }
+            const LoadDashboard = () => {
+                const loadingInstance = VsLoadingFn({
+                text: 'Loading Dashboard...',
+                className: 'ms__loader'
+            });
+            
+                setTimeout(() => {
+                const loaderElement = document.querySelector('.ms__loader');
+                if (loaderElement) {
+                    loaderElement.classList.add('ms__loader-close');
+                    loaderElement.addEventListener(
+                    'animationend',
+                    () => {
+                        loadingInstance.close();
+                    },
+                    { once: true }
+                    );
+                }
+                }, 150);
+            };
 
-            return { active, changeState };
+            return { active, LoadDashboard };
         },
     }
 </script>

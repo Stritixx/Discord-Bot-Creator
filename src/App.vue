@@ -24,7 +24,7 @@
           </vs-sidebar-item>
         </RouterLink>
 
-        <RouterLink to="/dashboard" class="ms__router__link__styles">
+        <RouterLink to="/dashboard" class="ms__router__link__styles" @click="LoadDashboard">
           <vs-sidebar-item id="dashboard">
             <template #icon>
               <i class="bx bx-grid-alt" />
@@ -163,45 +163,42 @@
 
 
 
-  <script setup>
+<script setup>
   import { ref, onMounted, watch } from 'vue';
   import { useRoute } from 'vue-router'; 
+  import { VsLoadingFn } from 'vuesax-alpha';
 
-  const active = ref('home');
-  const isDashboard = ref(false);
-  
   const route = useRoute();
   
+
   const checkPage = () => {
     const path = window.location.pathname;
-
+  
     if (path === '/dashboard') {
-      console.log('dashboard');
+      return 'dashboard';
     } 
-    
     else if (path === '/discord') {
-      console.log('discord');
+      return 'discord';
     } 
-    
     else if (path === '/tutorial') {
-      console.log('tutorial');
+      return 'tutorial';
     } 
-    
     else if (path === '/status') {
-      console.log('status');
+      return 'status';
     } 
-    
     else if (path === '/news') {
-      console.log('news');
+      return 'news';
     }
 
     else {
-      console.log('home')
+      return 'home';
     }
   };
 
 
+  let active = ref(checkPage()); 
 
+  let isDashboard = ref(false);
 
   function checkDashboard() {
     isDashboard.value = route.path.includes('/dashboard');
@@ -210,22 +207,17 @@
 
 
 
-  watch(function() {
-    return route.path;
-  }, 
-  function() {
-    checkDashboard();
-    checkPage();
-  }, 
-  { 
-    immediate: true 
-  });
-
+  watch(
+    () => route.path,
+    () => {
+      checkDashboard();
+      active.value = checkPage();
+    }, 
+    { immediate: true }
+  );
   
-  import { VsLoadingFn } from 'vuesax-alpha';
-  
-  const openLoading = () => {
-    const loadingInstance = VsLoadingFn({
+    const openLoading = () => {
+      const loadingInstance = VsLoadingFn({
       text: 'Loading...',
       className: 'ms__loader'
     });
@@ -245,9 +237,34 @@
     }, 500);
   };
   
+
+  const LoadDashboard = () => {
+      const loadingInstance = VsLoadingFn({
+      text: 'Loading Dashboard...',
+      className: 'ms__loader'
+    });
+  
+    setTimeout(() => {
+      const loaderElement = document.querySelector('.ms__loader');
+      if (loaderElement) {
+        loaderElement.classList.add('ms__loader-close');
+        loaderElement.addEventListener(
+          'animationend',
+          () => {
+            loadingInstance.close();
+          },
+          { once: true }
+        );
+      }
+    }, 150);
+  };
+
+
+
+
   onMounted(() => {
     openLoading();
-    checkPage();  // Wywołanie funkcji przy montowaniu komponentu
+    active.value = checkPage(); 
   });
 </script>
 

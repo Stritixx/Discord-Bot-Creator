@@ -1,5 +1,5 @@
 <template>
-  <p>dashboard</p>
+  <p style="color: white;">dashboard</p>
 </template>
 
 
