@@ -149,25 +149,26 @@
 </template>
 
 
-<script>
-  export default {
-  name: 'App',
-  data() {
-    return {
-      active: 'home',
-      isDashboard: false
-    }
-  },
-  mounted() {
-    this.isDashboard = window.location.pathname.includes('/dashboard');
-  }
-}
-</script>
-
 <script setup>
-import { onMounted } from 'vue';
-import { VsLoadingFn } from 'vuesax-alpha';
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router'; // użyj hooka do monitorowania zmiany ścieżki
 
+const active = ref('home');
+const isDashboard = ref(false);
+
+// Funkcja do ustawiania wartości isDashboard
+const route = useRoute();
+const checkDashboard = () => {
+  isDashboard.value = route.path.includes('/dashboard');
+};
+
+// Obserwacja zmiany ścieżki
+watch(() => route.path, () => {
+  checkDashboard();
+}, { immediate: true });
+
+// Otwórz loader przy montowaniu
+import { VsLoadingFn } from 'vuesax-alpha';
 
 const openLoading = () => {
   const loadingInstance = VsLoadingFn({
@@ -179,7 +180,6 @@ const openLoading = () => {
     const loaderElement = document.querySelector('.ms__loader');
     if (loaderElement) {
       loaderElement.classList.add('ms__loader-close');
-
       loaderElement.addEventListener(
         'animationend',
         () => {
