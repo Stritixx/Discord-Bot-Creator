@@ -60,7 +60,7 @@
             </vs-sidebar-item>
           </template>
   
-          <vs-sidebar-item id="embedCreator">
+          <vs-sidebar-item id="embedCreator" @click="EmbedCreatorActive = !EmbedCreatorActive">
             <template #icon>
               <i class='bx bx-chevron-right'></i>
             </template>
@@ -155,6 +155,28 @@
         <component :is="Component" />
       </transition>
     </router-view>
+
+    <vs-dialog v-model="EmbedCreatorActive" width="550px" not-center overlay-blur background="dark" class="ms__modal">
+      <template #header>
+        <h4 class="not-margin">Embed Creator</h4>
+      </template>
+
+      <div class="con-content">
+        <p>
+          Vuesax is a relatively new framework with a refreshing design and in
+          the latest trends, vuesax based on vuejs which means that we go hand
+          in hand with one of the most popular javascript frameworks in the
+          world and with a huge community with which you will have all the help
+          and documentation to create and make your project
+        </p>
+      </div>
+
+      <template #footer>
+        <div class="con-footer">
+          <vs-button type="transparent" @click="EmbedCreatorActive = false"> Ok </vs-button>
+        </div>
+      </template>
+    </vs-dialog>
   </template>
   
   
@@ -168,8 +190,9 @@
   import { useRoute } from 'vue-router'; 
   import { VsLoadingFn } from 'vuesax-alpha';
 
+
   const route = useRoute();
-  
+  const EmbedCreatorActive = ref(false)
 
   const checkPage = () => {
     const path = window.location.pathname;
@@ -203,6 +226,16 @@
   function checkDashboard() {
     isDashboard.value = route.path.includes('/dashboard');
   }
+
+
+
+  onMounted(function() {
+    const token = localStorage.getItem('token');
+
+    if (token === null) {
+      console.log('token nie istnieje')
+    }
+  });
 
 
 
@@ -392,5 +425,11 @@
     scale: 1.4;
   }
   
-    
+  
+
+  .vs-dialog--rebound {
+    background-color: rgb(2, 2, 2) !important;
+    color: rgba(255, 255, 255, 0.781) !important;
+    padding: 15px !important;
+  }
   </style>
